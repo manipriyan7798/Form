@@ -1,0 +1,27 @@
+.signup-container {
+  width: 40%;
+  height: auto;
+  background-color: white;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.signup-container-text {
+  padding: 20px;
+  width: 70%;
+  margin: auto;
+}
+h1 {
+  text-align: left;
+  color: rgb(27, 35, 141);
+}
+
+.signup-container-text button {
+  width: 40%;
+  margin: auto;
+  background-color: rgb(27, 35, 141);
+}
+
+.signup-container label {
+  font-weight: bold;
+}
