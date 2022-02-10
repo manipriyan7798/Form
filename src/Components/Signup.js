@@ -68,7 +68,7 @@ const Signup = () => {
             type="password"
           />
           <Button variant="contained" onClick={printValue}>
-            Sign Up
+            Submit
           </Button>
         </FormGroup>
       </div>
