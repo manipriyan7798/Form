@@ -20,7 +20,6 @@ const Signup = () => {
     <div className="signup-container">
       <div className="signup-container-text">
         <h1>Signup</h1>
-        <Typography align="left">Welcome, we are happy to have you</Typography>
         <FormGroup>
           <TextField
             sx={{ m: 1.5 }}
