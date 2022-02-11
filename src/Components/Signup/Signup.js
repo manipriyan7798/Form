@@ -8,12 +8,18 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassWord, setConfirmPassWord] = useState("");
 
-  const printValue = (e) => {
+
+  const submitRegisterValue = (e) => {
     e.preventDefault();
-    console.log(
-      `FirstName: ${firstName}, Lastname: ${lastName}, Email: ${email}, Username: ${userName}, Password: ${password}`
-    );
+    if (password == confirmPassWord) {
+      console.log("signUp details",
+        `{FirstName: ${firstName}, Lastname: ${lastName}, Email: ${email}, Username: ${userName}, Password: ${password}}`
+      );
+    } else {
+      alert("password confirm password doesn't match")
+    }
   };
 
   return (
@@ -24,7 +30,7 @@ const Signup = () => {
           <TextField
             sx={{ m: 1.5 }}
             onChange={(e) => setFirstName(e.target.value)}
-            // value={state}
+            value={firstName}
             id="First-name"
             label="First Name"
             type="text"
@@ -36,6 +42,7 @@ const Signup = () => {
             id="last-name"
             label="Last Name"
             type="text"
+            value={lastName}
           />
 
           <TextField
@@ -44,20 +51,23 @@ const Signup = () => {
             onChange={(e) => setEmail(e.target.value)}
             label="E-mail"
             type="email"
+            value={email}
           />
           <TextField sx={{ m: 1.5 }} id="confirm-email" label="Confirm Email" type="email" />
           <TextField
             sx={{ m: 1.5 }}
             onChange={(e) => setUserName(e.target.value)}
+            value={userName}
             id="user-name"
             label="UserName"
-            type="email"
+            type="text"
           />
 
           <TextField
             sx={{ m: 1.5 }}
             id="outlined-password-input"
             onChange={(e) => setPassword(e.target.value)}
+            value={password}
             label="Password"
             type="password"
           />
@@ -66,8 +76,10 @@ const Signup = () => {
             id="confirm-password-input"
             label="Confirm Password"
             type="password"
+            value={confirmPassWord}
+            onChange={(e) => setConfirmPassWord(e.target.value)}
           />
-          <Button variant="contained" onClick={printValue}>
+          <Button variant="contained" onClick={submitRegisterValue}>
             Sign Up
           </Button>
         </FormGroup>
