@@ -1,16 +1,23 @@
 import React from "react";
 import { FormGroup, Button, TextField, Typography, InputAdornment } from "@mui/material";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useState } from "react";
 import "../Signup/signup.css";
 
 const Login = () => {
+  const [userName, setUserName] = useState("");
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+    // e.setUserName = "";
+  };
   return (
     <div>
       <FormGroup>
         <TextField
           sx={{ m: 1.5 }}
-          //   value={firstName}
-          //   onChange={(e) => setFirstName(e.target.value)}
+          //   value={userName}
+          onChange={(e) => setUserName(e.target.value)}
           id="first-name"
           label="First Name"
           type="text"
@@ -35,7 +42,7 @@ const Login = () => {
             ),
           }}
         />
-        <Button variant="contained" className="active-btn">
+        <Button onClick={formSubmit} variant="contained" className="active-btn">
           Sign Up
         </Button>
       </FormGroup>
