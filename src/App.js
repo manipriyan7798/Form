@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Signup />
+        <Navbar />
         {/* <Login /> */}
         {/* <Signup /> */}
       </div>
