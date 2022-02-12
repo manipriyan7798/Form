@@ -21,6 +21,13 @@ const Signup = () => {
     } else {
       alert("password confirm password doesn't match");
     }
+
+    // Password validation
+    if (password.length <= 6 && password) {
+      console.log("strong password");
+    } else {
+      alert("password isn't strong");
+    }
   };
 
   return (
