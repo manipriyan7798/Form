@@ -23,7 +23,7 @@ const Signup = () => {
     }
 
     // Password validation
-    if (password.length <= 6 && password) {
+    if (password.length <= 6) {
       console.log("strong password");
     } else {
       alert("password isn't strong");
