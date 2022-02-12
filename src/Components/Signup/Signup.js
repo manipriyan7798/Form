@@ -1,5 +1,6 @@
-import { FormGroup, Button, TextField, Typography } from "@mui/material";
+import { FormGroup, Button, TextField } from "@mui/material";
 import { useState } from "react";
+
 import "./signup.css";
 
 const Signup = () => {
@@ -10,15 +11,15 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassWord, setConfirmPassWord] = useState("");
 
-
   const submitRegisterValue = (e) => {
     e.preventDefault();
-    if (password == confirmPassWord) {
-      console.log("signUp details",
+    if (password === confirmPassWord) {
+      console.log(
+        "signUp details",
         `{FirstName: ${firstName}, Lastname: ${lastName}, Email: ${email}, Username: ${userName}, Password: ${password}}`
       );
     } else {
-      alert("password confirm password doesn't match")
+      alert("password confirm password doesn't match");
     }
   };
 

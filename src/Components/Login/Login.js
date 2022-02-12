@@ -1,7 +1,7 @@
 import React from "react";
-import { FormGroup, Button, TextField, Typography, InputAdornment } from "@mui/material";
+import { FormGroup, Button, TextField, InputAdornment } from "@mui/material";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import Visibility from "@mui/icons-material/Visibility"
+import Visibility from "@mui/icons-material/Visibility";
 import { useState } from "react";
 import "../Signup/signup.css";
 
@@ -11,9 +11,7 @@ const Login = () => {
   const [viewPassword, setViewPassword] = useState(false);
 
   const handleClickViewPassword = () => {
-
     setViewPassword(!viewPassword);
-
   };
 
   const formSubmit = (e) => {
@@ -42,14 +40,18 @@ const Login = () => {
           sx={{ m: 1.5 }}
           id="password-input"
           label="Password"
-          type="password"
-          type={viewPassword ? 'text' : 'password'}
+          // type="password"
+          type={viewPassword ? "text" : "password"}
           value={passWord}
           onChange={(e) => setPassWord(e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end" onClick={handleClickViewPassword}>
-                {viewPassword ? <Visibility className="icon-clr" /> : <VisibilityOffIcon className="icon-clr" />}
+                {viewPassword ? (
+                  <Visibility className="icon-clr" />
+                ) : (
+                  <VisibilityOffIcon className="icon-clr" />
+                )}
               </InputAdornment>
             ),
           }}
