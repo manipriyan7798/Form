@@ -1,5 +1,6 @@
 import React from "react";
 import { FormGroup, Button, TextField, InputAdornment } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { useState } from "react";
@@ -18,6 +19,8 @@ const Login = () => {
     e.preventDefault();
     // e.setUserName = "";
   };
+
+  let navigate = useNavigate();
   return (
     <div>
       <FormGroup>
@@ -59,6 +62,7 @@ const Login = () => {
         <Button onClick={formSubmit} variant="contained" className="active-btn">
           Sign Up
         </Button>
+        <span>No account? <Button onClick={() => { navigate("/register") }}>Click here</Button> to register</span>
       </FormGroup>
     </div>
   );
