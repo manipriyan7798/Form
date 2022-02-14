@@ -1,5 +1,5 @@
 import React from "react";
-import { FormGroup, Button, TextField, InputAdornment } from "@mui/material";
+import { FormGroup, Button, TextField, Typography, InputAdornment } from "@mui/material";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { useState } from "react";
@@ -40,7 +40,7 @@ const Login = () => {
           sx={{ m: 1.5 }}
           id="password-input"
           label="Password"
-          // type="password"
+          type="password"
           type={viewPassword ? "text" : "password"}
           value={passWord}
           onChange={(e) => setPassWord(e.target.value)}

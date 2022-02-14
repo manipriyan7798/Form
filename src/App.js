@@ -5,17 +5,20 @@ import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div>
-        <Navbar />
-        {/* <Login /> */}
-        {/* <Signup /> */}
-      </div>
-      <Routes>
-        <Route path="/" component={Signup} exact />
-        <Route path="/login" component={Login} exact />
-      </Routes>
-    </BrowserRouter>
+    // <BrowserRouter>
+    //   <div>
+    //     <Navbar />
+    //     {/* <Login /> */}
+    //     {/* <Signup /> */}
+    //   </div>
+    //   <Routes>
+    //     <Route path="/" component={Signup} exact />
+    //     <Route path="/login" component={Login} exact />
+    //   </Routes>
+    // </BrowserRouter>
+    <div>
+      <Login />
+    </div>
   );
 }
 
