@@ -2,8 +2,8 @@ import { Navigate, Outlet } from "react-router-dom";
 import NavBar from "../Components/Navbar/Navbar";
 
 const useAuth = () => {
-    const user = { loggedIn: true }; //Default authentication true
-    return user && user.loggedIn;
+    const user = { loggedIn: false }; //Default authentication true
+    return user.loggedIn;
 };
 
 const ProtectedRoutes = () => {
