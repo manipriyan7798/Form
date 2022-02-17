@@ -132,6 +132,47 @@ const Signup = () => {
   const [birthday, setBirthday] = useState("");
   const [gender, setGender] = useState("");
 
+  const [firstNameValidation, setFirstNameValidation] = useState(false);
+  const [lastNameValidation, setLastNameValidation] = useState(false);
+
+  const [emailValidation, setEmailValidation] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState(false);
+  const [confirmpasswordValidation, setConfirmpasswordValidation] = useState(false);
+  // const [genderValidation, setGenderValidation] = useState(false);
+  // const [dobValidation, setDobValidation] = useState(false);
+
+  const validate = () => {
+
+    if (firstName === "" || firstName === undefined) {
+      setFirstNameValidation(true)
+    }
+    if (lastName === "" || lastName === undefined) {
+      setLastNameValidation(true)
+    }
+    if (email === "" || email === undefined) {
+      setEmailValidation(true)
+    }
+    // if (dob === "" || dob === undefined) {
+    //   setDobValidation(true)
+    // }
+    if (password === "" || password === undefined) {
+      setPasswordValidation(true)
+    }
+    if (confirmPassword === "" || confirmPassword === undefined) {
+      setConfirmpasswordValidation(true)
+    }
+
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      return false
+    }
+
+    //if password & confirmPassword not equal
+    if (password !== confirmPassword) {
+      alert('password and confirm password is not equal')
+    }
+    return true;
+  }
+
   const submitButtonHandler = (e) => {
     if (firstName === "" || lastName === "" || birthday === "" || email === "" || password === "") {
       alert("Please enter all the details");
@@ -153,6 +194,19 @@ const Signup = () => {
     setConfirmPassword("");
     setBirthday("");
   };
+
+  //Other Way for each validation
+  // const onSubmithandler = (event) => {
+  //   event.preventDefault();
+
+  //   if (validate()) {
+  //     console.log(JSON.stringify(
+  //       { firstName: firstName, lastName: lastName, date_of_Birth: birthday, mail: email, password: password, gender: gender }
+  //     )
+  //     );
+  //   }
+
+  // }
 
   const checkboxChangeHandler = (e) => {
     // to find out if it's checked or not; returns true or false
@@ -183,6 +237,10 @@ const Signup = () => {
           onChange={(e) => setFirstName(e.target.value)}
           placeholder="Firstname"
         />
+        {
+          firstNameValidation &&
+          <div style={{ color: "red" }}>firstName is Required</div>
+        }
         <br />
         <br />
         <label htmlFor="">LastName</label>
@@ -193,6 +251,10 @@ const Signup = () => {
           onChange={(e) => setLasttName(e.target.value)}
           placeholder="LastName"
         />
+        {
+          lastNameValidation &&
+          <div style={{ color: "red" }}>firstName is Required</div>
+        }
         <br />
         <br />
         <label htmlFor="">DOB</label>
@@ -234,6 +296,10 @@ const Signup = () => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
         />
+        {
+          emailValidation &&
+          <div style={{ color: "red" }}>Email ID is Required</div>
+        }
         <br />
         <br />
         <label htmlFor="">Password</label>
@@ -244,7 +310,12 @@ const Signup = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          minLength={6}
         />
+        {
+          passwordValidation &&
+          <div style={{ color: "red" }}>password is Required</div>
+        }
         <br />
         <br />
         <label htmlFor="">Confirm Password</label>
@@ -255,7 +326,13 @@ const Signup = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder="Confirm Password"
+
         />
+        {
+
+          confirmpasswordValidation &&
+          <div style={{ color: "red" }}>confirmPassword is Required</div>
+        }
 
         <button>Submit</button>
       </form>
