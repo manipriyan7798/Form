@@ -130,8 +130,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [genderMale, setGenderMale] = useState("");
-  const [genderFemale, setGenderFemale] = useState("");
+  const [gender, setGender] = useState("");
 
   const submitButtonHandler = (e) => {
     if (firstName === "" || lastName === "" || birthday === "" || email === "" || password === "") {
@@ -140,7 +139,7 @@ const Signup = () => {
       if (password === confirmPassword) {
         e.preventDefault();
         console.log(
-          `FirstName: ${firstName}, LastName: ${lastName} , Date-of-Birth: ${birthday}, mail: ${email}, password: ${password}, Gender; ${genderMale}`
+          `FirstName: ${firstName}, LastName: ${lastName} , Date-of-Birth: ${birthday}, mail: ${email}, password: ${password}, Gender; ${gender}`
         );
       } else {
         alert("password doesn't match");
@@ -212,17 +211,17 @@ const Signup = () => {
         <input
           type="radio"
           name="gender"
-          value={genderMale}
+          value={gender}
           id="male"
-          onChange={(e) => setGenderMale(e.target.id)}
+          onChange={(e) => setGender(e.target.id)}
         />
         <label htmlFor="">Female</label>
         <input
           type="radio"
           name="gender"
           id="female"
-          value={genderFemale}
-          onChange={(e) => setGenderFemale(e.target.id)}
+          value={gender}
+          onChange={(e) => setGender(e.target.id)}
         />
 
         <br />
