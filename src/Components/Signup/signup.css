@@ -4,6 +4,7 @@
   background-color: white;
   margin: auto;
   margin-top: 50px;
+  text-align: center;
 }
 
 .signup-container-text {
@@ -12,7 +13,7 @@
   margin: auto;
 }
 h1 {
-  text-align: left;
+  /* text-align: left; */
   color: rgb(27, 35, 141);
 }
 

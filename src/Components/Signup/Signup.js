@@ -121,6 +121,7 @@
 // export default Signup;
 
 import { useState } from "react";
+import "./signup.css";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -129,20 +130,20 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthday, setBirthday] = useState("");
+  const [checked, setchecked] = useState("");
 
   const submitButtonHandler = (e) => {
-    e.preventDefault();
-    if (password === confirmPassword) {
-      console.log(
-        `FirstName: ${firstName}, LastName: ${lastName} , Date-of-Birth: ${birthday}, mail: ${email}, password: ${password}`
-      );
-    } else {
-      alert("password doesn't match");
-    }
-
     if (firstName === "" || lastName === "" || birthday === "" || email === "" || password === "") {
       alert("Please enter all the details");
     } else {
+      if (password === confirmPassword) {
+        e.preventDefault();
+        console.log(
+          `FirstName: ${firstName}, LastName: ${lastName} , Date-of-Birth: ${birthday}, mail: ${email}, password: ${password}`
+        );
+      } else {
+        alert("password doesn't match");
+      }
     }
 
     setFirstName("");
@@ -153,8 +154,25 @@ const Signup = () => {
     setBirthday("");
   };
 
+  const checkboxChangeHandler = (e) => {
+    // to find out if it's checked or not; returns true or false
+    const checked = e.target.checked;
+
+    // to get the checked value
+    const checkedValue = e.target.value;
+
+    // to get the checked name
+    const checkedName = e.target.name;
+
+    if (checked === true) {
+      console.log(checkedName);
+    } else {
+      console.log("not-checked");
+    }
+  };
+
   return (
-    <div>
+    <div className="signup-container">
       <h1>Signup</h1>
       <form onSubmit={submitButtonHandler} action="">
         <label htmlFor="">FirstName</label>
@@ -186,9 +204,9 @@ const Signup = () => {
         <br />
         <br />
         <label htmlFor="">Gender</label>
-        <input type="checkbox" name="" id="male" />
-        <label htmlFor="">male</label>
-        <input type="checkbox" name="" id="female" />
+        <input type="checkbox" name="Male" id="male" onChange={checkboxChangeHandler} />
+        <label htmlFor="">Male</label>
+        <input type="checkbox" name="Female" id="female" onChange={checkboxChangeHandler} />
         <label htmlFor="">Female</label>
         <br />
         <br />
