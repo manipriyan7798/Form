@@ -130,7 +130,8 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [checked, setchecked] = useState("");
+  const [genderMale, setGenderMale] = useState("");
+  const [genderFemale, setGenderFemale] = useState("");
 
   const submitButtonHandler = (e) => {
     if (firstName === "" || lastName === "" || birthday === "" || email === "" || password === "") {
@@ -139,7 +140,7 @@ const Signup = () => {
       if (password === confirmPassword) {
         e.preventDefault();
         console.log(
-          `FirstName: ${firstName}, LastName: ${lastName} , Date-of-Birth: ${birthday}, mail: ${email}, password: ${password}`
+          `FirstName: ${firstName}, LastName: ${lastName} , Date-of-Birth: ${birthday}, mail: ${email}, password: ${password}, Gender; ${genderMale}`
         );
       } else {
         alert("password doesn't match");
@@ -181,6 +182,7 @@ const Signup = () => {
           label="first-name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
+          placeholder="Firstname"
         />
         <br />
         <br />
@@ -190,6 +192,7 @@ const Signup = () => {
           label="last-Name"
           value={lastName}
           onChange={(e) => setLasttName(e.target.value)}
+          placeholder="LastName"
         />
         <br />
         <br />
@@ -200,18 +203,38 @@ const Signup = () => {
           id="birthday"
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
+          placeholder="Birthday"
         />
         <br />
         <br />
-        <label htmlFor="">Gender</label>
-        <input type="checkbox" name="Male" id="male" onChange={checkboxChangeHandler} />
+        <p>Gender</p>
         <label htmlFor="">Male</label>
-        <input type="checkbox" name="Female" id="female" onChange={checkboxChangeHandler} />
+        <input
+          type="radio"
+          name="gender"
+          value={genderMale}
+          id="male"
+          onChange={(e) => setGenderMale(e.target.id)}
+        />
         <label htmlFor="">Female</label>
+        <input
+          type="radio"
+          name="gender"
+          id="female"
+          value={genderFemale}
+          onChange={(e) => setGenderFemale(e.target.id)}
+        />
+
         <br />
         <br />
         <label htmlFor="">Email</label>
-        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          type="email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+        />
         <br />
         <br />
         <label htmlFor="">Password</label>
@@ -221,6 +244,7 @@ const Signup = () => {
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
         />
         <br />
         <br />
@@ -231,6 +255,7 @@ const Signup = () => {
           id="confirm-password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder="Confirm Password"
         />
 
         <button>Submit</button>
