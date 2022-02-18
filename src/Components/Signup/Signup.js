@@ -5,6 +5,10 @@
 // import FormControlLabel from "@mui/material/FormControlLabel";
 // import FormControl from "@mui/material/FormControl";
 // import FormLabel from "@mui/material/FormLabel";
+// import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
+// import AdapterDateFns from "@mui/lab/AdapterDateFns";
+// import LocalizationProvider from "@mui/lab/LocalizationProvider";
+// import DateAdapter from "@mui/lab/AdapterDateFns";
 
 // import "./signup.css";
 
@@ -15,10 +19,15 @@
 //   const [userName, setUserName] = useState("");
 //   const [password, setPassword] = useState("");
 //   const [confirmPassWord, setConfirmPassWord] = useState("");
-//   const [value, setValue] = useState("female");
+//   const [gender, setGender] = useState("");
 
-//   const handleChange = (event) => {
-//     setValue(event.target.value);
+//   // const handleChange = (event) => {
+//   //   setValue(event.target.value);
+//   // };
+//   const [value, setValue] = useState(new Date("2014-08-18T21:11:54"));
+
+//   const handleChange = (newValue) => {
+//     setValue(newValue);
 //   };
 
 //   const submitRegisterValue = (e) => {
@@ -26,7 +35,7 @@
 //     if (password === confirmPassWord) {
 //       console.log(
 //         "signUp details",
-//         `{FirstName: ${firstName}, Lastname: ${lastName}, Email: ${email}, Username: ${userName}, Password: ${password}}`
+//         `{FirstName: ${firstName}, Lastname: ${lastName}, Email: ${email}, Username: ${userName}, Password: ${password}, Gender: ${gender}}`
 //       );
 //     } else {
 //       alert("password confirm password doesn't match");
@@ -67,14 +76,31 @@
 //             <RadioGroup
 //               aria-labelledby="demo-controlled-radio-buttons-group"
 //               name="controlled-radio-buttons-group"
-//               value={value}
-//               onChange={handleChange}
+//               value={gender}
 //             >
-//               <FormControlLabel value="female" control={<Radio />} label="Female" />
-//               <FormControlLabel value="male" control={<Radio />} label="Male" />
+//               <FormControlLabel
+//                 value="female"
+//                 onChange={(e) => setGender(e.target.value)}
+//                 control={<Radio />}
+//                 label="Female"
+//               />
+//               <FormControlLabel
+//                 value="male"
+//                 onChange={(e) => setGender(e.target.value)}
+//                 control={<Radio />}
+//                 label="Male"
+//               />
 //             </RadioGroup>
 //           </FormControl>
-
+//           <LocalizationProvider DateAdapter={AdapterDateFns}>
+//             <DesktopDatePicker
+//               label="Date desktop"
+//               inputFormat="MM/dd/yyyy"
+//               value={value}
+//               onChange={handleChange}
+//               renderInput={(params) => <TextField {...params} />}
+//             />
+//           </LocalizationProvider>
 //           <TextField
 //             sx={{ m: 1.5 }}
 //             id="e-mail"
@@ -122,6 +148,7 @@
 
 import { useState } from "react";
 import "./signup.css";
+import Button from "react-bootstrap/Button";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -142,20 +169,22 @@ const Signup = () => {
   // const [dobValidation, setDobValidation] = useState(false);
 
   const validate = (e) => {
-    e.preventDefault();
     if (firstName === "" || firstName === undefined) {
       setFirstNameValidation(true);
     } else {
+      e.preventDefault();
       setFirstNameValidation(false);
     }
     if (lastName === "" || lastName === undefined) {
       setLastNameValidation(true);
     } else {
+      e.preventDefault();
       setLastNameValidation(false);
     }
     if (email === "" || email === undefined) {
       setEmailValidation(true);
     } else {
+      e.preventDefault();
       setEmailValidation(false);
     }
     // if (dob === "" || dob === undefined) {
@@ -164,11 +193,13 @@ const Signup = () => {
     if (password === "" || password === undefined) {
       setPasswordValidation(true);
     } else {
+      e.preventDefault();
       setPasswordValidation(false);
     }
     if (confirmPassword === "" || confirmPassword === undefined) {
       setConfirmpasswordValidation(true);
     } else {
+      e.preventDefault();
       setConfirmpasswordValidation(false);
     }
 
@@ -181,9 +212,9 @@ const Signup = () => {
       alert("password and confirm password is not equal");
     }
     if (
-      firstName.length >= 1 &&
-      lastName.length >= 1 &&
-      email.length >= 1 &&
+      firstName.length > 0 &&
+      lastName.length > 0 &&
+      email.length > 0 &&
       password === confirmPassword
     ) {
       console.log(
@@ -196,6 +227,16 @@ const Signup = () => {
           gender: gender,
         })
       );
+
+      setFirstName("");
+      setLasttName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      setBirthday("");
+      setGender("");
+
+      // console.log(new Date());
     }
     return true;
   };
@@ -256,7 +297,9 @@ const Signup = () => {
     <div className="signup-container">
       <h1>Signup</h1>
       <form onSubmit={validate} action="">
-        <label htmlFor="">FirstName</label>
+        <label htmlFor="" className="labelnone">
+          FirstName
+        </label>
         <input
           type="text"
           label="first-name"
@@ -267,7 +310,9 @@ const Signup = () => {
         {firstNameValidation && <div style={{ color: "red" }}>firstName is Required</div>}
         <br />
         <br />
-        <label htmlFor="">LastName</label>
+        <label htmlFor="" className="labelnone">
+          LastName
+        </label>
         <input
           type="text"
           label="last-Name"
@@ -278,11 +323,14 @@ const Signup = () => {
         {lastNameValidation && <div style={{ color: "red" }}>firstName is Required</div>}
         <br />
         <br />
-        <label htmlFor="">DOB</label>
+        <label htmlFor="" className="labelnone">
+          DOB
+        </label>
         <input
           type="date"
           name="birthday"
           id="birthday"
+          maxLength={new Date()}
           value={birthday}
           onChange={(e) => setBirthday(e.target.value)}
           placeholder="Birthday"
@@ -309,7 +357,9 @@ const Signup = () => {
 
         <br />
         <br />
-        <label htmlFor="">Email</label>
+        <label className="labelnone" htmlFor="">
+          Email
+        </label>
         <input
           type="email"
           id="email"
@@ -320,7 +370,9 @@ const Signup = () => {
         {emailValidation && <div style={{ color: "red" }}>Email ID is Required</div>}
         <br />
         <br />
-        <label htmlFor="">Password</label>
+        <label className="labelnone" htmlFor="">
+          Password
+        </label>
         <input
           type="password"
           name="password"
@@ -333,7 +385,9 @@ const Signup = () => {
         {passwordValidation && <div style={{ color: "red" }}>password is Required</div>}
         <br />
         <br />
-        <label htmlFor="">Confirm Password</label>
+        <label className="labelnone" htmlFor="">
+          Confirm Password
+        </label>
         <input
           type="password"
           name="password"
@@ -345,8 +399,10 @@ const Signup = () => {
         {confirmpasswordValidation && (
           <div style={{ color: "red" }}>confirmPassword is Required</div>
         )}
-
-        <button>Submit</button>
+        <br />
+        <Button onClick={validate} variant="primary">
+          Primary
+        </Button>
       </form>
     </div>
   );
