@@ -297,9 +297,6 @@ const Signup = () => {
     <div className="signup-container">
       <h1>Signup</h1>
       <form onSubmit={validate} action="">
-        <label htmlFor="" className="labelnone">
-          FirstName
-        </label>
         <input
           type="text"
           label="first-name"
@@ -310,9 +307,7 @@ const Signup = () => {
         {firstNameValidation && <div style={{ color: "red" }}>firstName is Required</div>}
         <br />
         <br />
-        <label htmlFor="" className="labelnone">
-          LastName
-        </label>
+
         <input
           type="text"
           label="last-Name"
@@ -323,9 +318,7 @@ const Signup = () => {
         {lastNameValidation && <div style={{ color: "red" }}>firstName is Required</div>}
         <br />
         <br />
-        <label htmlFor="" className="labelnone">
-          DOB
-        </label>
+
         <input
           type="date"
           name="birthday"
@@ -337,7 +330,7 @@ const Signup = () => {
         />
         <br />
         <br />
-        <p>Gender</p>
+
         <label htmlFor="">Male</label>
         <input
           type="radio"
@@ -357,9 +350,7 @@ const Signup = () => {
 
         <br />
         <br />
-        <label className="labelnone" htmlFor="">
-          Email
-        </label>
+
         <input
           type="email"
           id="email"
@@ -370,9 +361,7 @@ const Signup = () => {
         {emailValidation && <div style={{ color: "red" }}>Email ID is Required</div>}
         <br />
         <br />
-        <label className="labelnone" htmlFor="">
-          Password
-        </label>
+
         <input
           type="password"
           name="password"
@@ -385,9 +374,7 @@ const Signup = () => {
         {passwordValidation && <div style={{ color: "red" }}>password is Required</div>}
         <br />
         <br />
-        <label className="labelnone" htmlFor="">
-          Confirm Password
-        </label>
+
         <input
           type="password"
           name="password"
@@ -401,7 +388,7 @@ const Signup = () => {
         )}
         <br />
         <Button onClick={validate} variant="primary">
-          Primary
+          Submit
         </Button>
       </form>
     </div>
