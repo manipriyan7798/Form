@@ -1,154 +1,7 @@
-// import { FormGroup, Button, TextField } from "@mui/material";
-// import { useState } from "react";
-// import Radio from "@mui/material/Radio";
-// import RadioGroup from "@mui/material/RadioGroup";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-// import FormControl from "@mui/material/FormControl";
-// import FormLabel from "@mui/material/FormLabel";
-// import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
-// import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import LocalizationProvider from "@mui/lab/LocalizationProvider";
-// import DateAdapter from "@mui/lab/AdapterDateFns";
-
-// import "./signup.css";
-
-// const Signup = () => {
-//   const [firstName, setFirstName] = useState("");
-//   const [lastName, setLastName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [userName, setUserName] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [confirmPassWord, setConfirmPassWord] = useState("");
-//   const [gender, setGender] = useState("");
-
-//   // const handleChange = (event) => {
-//   //   setValue(event.target.value);
-//   // };
-//   const [value, setValue] = useState(new Date("2014-08-18T21:11:54"));
-
-//   const handleChange = (newValue) => {
-//     setValue(newValue);
-//   };
-
-//   const submitRegisterValue = (e) => {
-//     e.preventDefault();
-//     if (password === confirmPassWord) {
-//       console.log(
-//         "signUp details",
-//         `{FirstName: ${firstName}, Lastname: ${lastName}, Email: ${email}, Username: ${userName}, Password: ${password}, Gender: ${gender}}`
-//       );
-//     } else {
-//       alert("password confirm password doesn't match");
-//     }
-
-//     // Password validation
-//     // if (password.length <= 6) {
-//     //   console.log("strong password");
-//     // } else {
-//     //   alert("password isn't strong");
-//     // }
-//   };
-
-//   return (
-//     <div className="signup-container">
-//       <div className="signup-container-text">
-//         <h1>Signup</h1>
-//         <FormGroup>
-//           <TextField
-//             sx={{ m: 1.5 }}
-//             onChange={(e) => setFirstName(e.target.value)}
-//             value={firstName}
-//             id="First-name"
-//             label="First Name"
-//             type="text"
-//           />
-
-//           <TextField
-//             sx={{ m: 1.5 }}
-//             onChange={(e) => setLastName(e.target.value)}
-//             id="last-name"
-//             label="Last Name"
-//             type="text"
-//             value={lastName}
-//           />
-//           <FormControl>
-//             <FormLabel id="demo-controlled-radio-buttons-group">Gender</FormLabel>
-//             <RadioGroup
-//               aria-labelledby="demo-controlled-radio-buttons-group"
-//               name="controlled-radio-buttons-group"
-//               value={gender}
-//             >
-//               <FormControlLabel
-//                 value="female"
-//                 onChange={(e) => setGender(e.target.value)}
-//                 control={<Radio />}
-//                 label="Female"
-//               />
-//               <FormControlLabel
-//                 value="male"
-//                 onChange={(e) => setGender(e.target.value)}
-//                 control={<Radio />}
-//                 label="Male"
-//               />
-//             </RadioGroup>
-//           </FormControl>
-//           <LocalizationProvider DateAdapter={AdapterDateFns}>
-//             <DesktopDatePicker
-//               label="Date desktop"
-//               inputFormat="MM/dd/yyyy"
-//               value={value}
-//               onChange={handleChange}
-//               renderInput={(params) => <TextField {...params} />}
-//             />
-//           </LocalizationProvider>
-//           <TextField
-//             sx={{ m: 1.5 }}
-//             id="e-mail"
-//             onChange={(e) => setEmail(e.target.value)}
-//             label="E-mail"
-//             type="email"
-//             value={email}
-//           />
-//           <TextField sx={{ m: 1.5 }} id="confirm-email" label="Confirm Email" type="email" />
-//           <TextField
-//             sx={{ m: 1.5 }}
-//             onChange={(e) => setUserName(e.target.value)}
-//             value={userName}
-//             id="user-name"
-//             label="UserName"
-//             type="text"
-//           />
-
-//           <TextField
-//             sx={{ m: 1.5 }}
-//             id="outlined-password-input"
-//             onChange={(e) => setPassword(e.target.value)}
-//             value={password}
-//             label="Password"
-//             type="password"
-//           />
-//           <TextField
-//             sx={{ m: 1.5 }}
-//             id="confirm-password-input"
-//             label="Confirm Password"
-//             type="password"
-//             value={confirmPassWord}
-//             onChange={(e) => setConfirmPassWord(e.target.value)}
-//           />
-//           <Button variant="contained" onClick={submitRegisterValue}>
-//             Sign Up
-//           </Button>
-//         </FormGroup>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Signup;
-
-import { useState } from "react";
+import React, { useState } from "react";
+import moment from "moment";
+import { Button, Form } from "react-bootstrap";
 import "./signup.css";
-import Button from "react-bootstrap/Button";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -165,45 +18,33 @@ const Signup = () => {
   const [emailValidation, setEmailValidation] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState(false);
   const [confirmpasswordValidation, setConfirmpasswordValidation] = useState(false);
-  // const [genderValidation, setGenderValidation] = useState(false);
-  // const [dobValidation, setDobValidation] = useState(false);
+  const [genderValidation, setGenderValidation] = useState(false);
+  const [birthdayValidation, setbirthdayValidation] = useState(false);
 
   const validate = (e) => {
     if (firstName === "" || firstName === undefined) {
       setFirstNameValidation(true);
-    } else {
-      e.preventDefault();
-      setFirstNameValidation(false);
     }
     if (lastName === "" || lastName === undefined) {
       setLastNameValidation(true);
-    } else {
-      e.preventDefault();
-      setLastNameValidation(false);
     }
     if (email === "" || email === undefined) {
       setEmailValidation(true);
-    } else {
-      e.preventDefault();
-      setEmailValidation(false);
     }
-    // if (dob === "" || dob === undefined) {
-    //   setDobValidation(true)
-    // }
+    if (gender === "" || gender === undefined) {
+      setGenderValidation(true);
+    }
+    if (birthday === "" || birthday === undefined) {
+      setbirthdayValidation(true)
+    }
     if (password === "" || password === undefined) {
       setPasswordValidation(true);
-    } else {
-      e.preventDefault();
-      setPasswordValidation(false);
     }
     if (confirmPassword === "" || confirmPassword === undefined) {
       setConfirmpasswordValidation(true);
-    } else {
-      e.preventDefault();
-      setConfirmpasswordValidation(false);
     }
 
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !email || !genderValidation || !password || !confirmPassword) {
       return false;
     }
 
@@ -242,39 +83,27 @@ const Signup = () => {
   };
 
   const submitButtonHandler = (e) => {
+    e.preventDefault();
     if (firstName === "" || lastName === "" || birthday === "" || email === "" || password === "") {
       alert("Please enter all the details");
     } else {
       if (password === confirmPassword) {
-        e.preventDefault();
-        console.log(
-          `FirstName: ${firstName}, LastName: ${lastName} , Date-of-Birth: ${birthday}, mail: ${email}, password: ${password}, Gender; ${gender}`
-        );
+        console.log(JSON.stringify(
+          { firstName: firstName, lastName: lastName, date_of_Birth: birthday, mail: email, password: password, gender: gender }
+        ));
+        setFirstName("");
+        setLasttName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setBirthday("");
       } else {
         alert("password doesn't match");
       }
     }
 
-    setFirstName("");
-    setLasttName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-    setBirthday("");
   };
 
-  //Other Way for each validation
-  // const onSubmithandler = (event) => {
-  //   event.preventDefault();
-
-  //   if (validate()) {
-  //     console.log(JSON.stringify(
-  //       { firstName: firstName, lastName: lastName, date_of_Birth: birthday, mail: email, password: password, gender: gender }
-  //     )
-  //     );
-  //   }
-
-  // }
 
   const checkboxChangeHandler = (e) => {
     // to find out if it's checked or not; returns true or false
@@ -296,97 +125,167 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <h1>Signup</h1>
-      <form onSubmit={validate} action="">
-        <input
-          type="text"
-          label="first-name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          placeholder="Firstname"
-        />
-        {firstNameValidation && <div style={{ color: "red" }}>firstName is Required</div>}
-        <br />
-        <br />
+      <form onSubmit={validate} >
+        {/* first name field starts */}
+        <Form.Group className="mb-3" controlId="formBasicname">
+          <Form.Label>First Name:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value)
+              setFirstNameValidation(false)
+            }} />
+          {/* name Validation */}
+          {firstNameValidation &&
+            <Form.Text className="text-danger">
+              First Name is Required
+            </Form.Text>
+          }
+        </Form.Group>
+        {/* first name field ends */}
 
-        <input
-          type="text"
-          label="last-Name"
-          value={lastName}
-          onChange={(e) => setLasttName(e.target.value)}
-          placeholder="LastName"
-        />
-        {lastNameValidation && <div style={{ color: "red" }}>firstName is Required</div>}
-        <br />
-        <br />
+        {/* Last name field starts */}
+        <Form.Group className="mb-3" controlId="lastNamefield">
+          <Form.Label>Last Name :</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            value={lastName}
+            onChange={(e) => {
+              setLasttName(e.target.value)
+              setLastNameValidation(false)
+            }}
+            placeholder="Last Name"
+          />
+          {/* name Validation */}
+          {lastNameValidation &&
+            <Form.Text className="text-danger">
+              Last Name is Required
+            </Form.Text>
+          }
+        </Form.Group>
+        {/* Last name field ends */}
 
-        <input
-          type="date"
-          name="birthday"
-          id="birthday"
-          maxLength={new Date()}
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          placeholder="Birthday"
-        />
-        <br />
-        <br />
+        {/* Date picker field starts */}
+        <Form.Group className="mb-3" controlId="formBasicname">
+          <Form.Label>Enter Date of birth:</Form.Label>
+          <Form.Control
+            type="date"
+            name="birthday"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            placeholder="Birthday"
+            maxLength={new Date()}
+          />
+          {/* name Validation */}
+          {birthdayValidation &&
+            <Form.Text className="text-danger">
+              Date of birth is Required
+            </Form.Text>
+          }
+        </Form.Group>
+        {/* Date picker field ends */}
 
-        <label htmlFor="">Male</label>
-        <input
-          type="radio"
+
+        {/* gender radio button starts*/}
+        <Form.Check
+          inline
+          label="Male"
           name="gender"
           value={gender}
-          id="male"
           onChange={(e) => setGender(e.target.id)}
-        />
-        <label htmlFor="">Female</label>
-        <input
           type="radio"
+          id={`inline-radio-1`}
+        />
+        <Form.Check
+          inline
+          label="Female"
           name="gender"
-          id="female"
           value={gender}
           onChange={(e) => setGender(e.target.id)}
+          type="radio"
+          id={`inline-radio-2`}
         />
 
-        <br />
-        <br />
+        {
+          genderValidation &&
+          <Form.Text className="text-danger">
+            Gender is Required
+          </Form.Text>
+        }
+        {/* gender radio button ends */}
 
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        {emailValidation && <div style={{ color: "red" }}>Email ID is Required</div>}
-        <br />
-        <br />
+        {/* email validation starts */}
+        <Form.Group className="mb-3" controlId="emailfield">
+          <Form.Label>Email :</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Last Name"
+            name="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value)
+              setEmailValidation(false)
+            }}
+            placeholder="Email"
+          />
+          {/* name Validation */}
+          {emailValidation &&
+            <Form.Text className="text-danger">
+              Email ID is Required
+            </Form.Text>
+          }
+        </Form.Group>
 
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          minLength={6}
-        />
-        {passwordValidation && <div style={{ color: "red" }}>password is Required</div>}
-        <br />
-        <br />
+        {/* Password field starts */}
+        <Form.Group className="mb-3" controlId="passwordField">
+          <Form.Label htmlFor="inputPassword5">Password</Form.Label>
+          <Form.Control
+            type="password"
+            id="inputPassword5"
+            aria-describedby="passwordHelpBlock"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            minLength={6}
+          />
+          {/* passowrd validation */}
+          {
+            passwordValidation &&
+            <Form.Text className="text-danger">
+              Password is Required
+            </Form.Text>
+          }
+        </Form.Group>
+        {/* Password filed ends */}
 
-        <input
-          type="password"
-          name="password"
-          id="confirm-password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          placeholder="Confirm Password"
-        />
-        {confirmpasswordValidation && (
-          <div style={{ color: "red" }}>confirmPassword is Required</div>
-        )}
-        <br />
+
+        {/* confirm password starts */}
+        <Form.Group className="mb-3" controlId="cpasswordField">
+          <Form.Label htmlFor="inputPassword5"  >Confirm Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            id="confirm-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm Password"
+            minLength={6}
+          />
+          {/* passowrd validation */}
+          {
+            confirmpasswordValidation &&
+            <Form.Text className="text-danger">
+              Confirm Password is Required
+            </Form.Text>
+          }
+        </Form.Group>
+        {/* confirm password ends */}
+
         <Button onClick={validate} variant="primary">
           Submit
         </Button>

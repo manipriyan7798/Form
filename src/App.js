@@ -1,8 +1,8 @@
 import React from "react";
 import Routers from "./router";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
+const App = () => {
   return (
     <>
       <Routers />
