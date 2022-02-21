@@ -21,7 +21,7 @@ const Signup = () => {
   const [genderValidation, setGenderValidation] = useState(false);
   const [birthdayValidation, setbirthdayValidation] = useState(false);
 
-  const validate = (e) => {
+  const validate = () => {
     if (firstName === "" || firstName === undefined) {
       setFirstNameValidation(true);
     }
@@ -52,55 +52,30 @@ const Signup = () => {
     if (password !== confirmPassword) {
       alert("password and confirm password is not equal");
     }
-    if (
-      firstName.length > 0 &&
-      lastName.length > 0 &&
-      email.length > 0 &&
-      password === confirmPassword
-    ) {
-      console.log(
-        JSON.stringify({
-          firstName: firstName,
-          lastName: lastName,
-          date_of_Birth: birthday,
-          mail: email,
-          password: password,
-          gender: gender,
-        })
-      );
 
-      setFirstName("");
-      setLasttName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setBirthday("");
-      setGender("");
-
-      // console.log(new Date());
-    }
     return true;
   };
 
   const submitButtonHandler = (e) => {
     e.preventDefault();
-    if (firstName === "" || lastName === "" || birthday === "" || email === "" || password === "") {
-      alert("Please enter all the details");
-    } else {
-      if (password === confirmPassword) {
-        console.log(JSON.stringify(
-          { firstName: firstName, lastName: lastName, date_of_Birth: birthday, mail: email, password: password, gender: gender }
-        ));
-        setFirstName("");
-        setLasttName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        setBirthday("");
-      } else {
-        alert("password doesn't match");
-      }
+    // if (firstName === "" || lastName === "" || birthday === "" || email === "" || password === "") {
+    //   alert("Please enter all the details");
+    // } else {
+    if (validate) {
+      console.log(
+        { firstName: firstName, lastName: lastName, date_of_Birth: birthday, mail: email, password: password, gender: gender }
+      );
     }
+    // setFirstName("");
+    // setLasttName("");
+    // setEmail("");
+    // setPassword("");
+    // setConfirmPassword("");
+    // setBirthday("");
+    // } else {
+    //   console.log("signup unsuccessfull");
+    // }
+
 
   };
 
@@ -122,12 +97,15 @@ const Signup = () => {
     }
   };
 
+  let getTodaysDate = new Date();
+  // const datePickerValidation = getTodaysDate.setBirthday();
+
   return (
     <div className="signup-container">
       <h1>Signup</h1>
-      <form onSubmit={validate} >
+      <form onSubmit={submitButtonHandler} >
         {/* first name field starts */}
-        <Form.Group className="mb-3" controlId="formBasicname">
+        <Form.Group className="mb-3">
           <Form.Label>First Name:</Form.Label>
           <Form.Control
             type="text"
@@ -148,7 +126,7 @@ const Signup = () => {
         {/* first name field ends */}
 
         {/* Last name field starts */}
-        <Form.Group className="mb-3" controlId="lastNamefield">
+        <Form.Group className="mb-3" >
           <Form.Label>Last Name :</Form.Label>
           <Form.Control
             type="text"
@@ -171,7 +149,7 @@ const Signup = () => {
         {/* Last name field ends */}
 
         {/* Date picker field starts */}
-        <Form.Group className="mb-3" controlId="formBasicname">
+        <Form.Group className="mb-3" >
           <Form.Label>Enter Date of birth:</Form.Label>
           <Form.Control
             type="date"
@@ -179,8 +157,11 @@ const Signup = () => {
             value={birthday}
             onChange={(e) => setBirthday(e.target.value)}
             placeholder="Birthday"
-            maxLength={new Date()}
+            maxLength={moment().format()}
           />
+          {birthday}
+
+          {/* {moment(birthday).format("ll")} */}
           {/* name Validation */}
           {birthdayValidation &&
             <Form.Text className="text-danger">
@@ -199,7 +180,6 @@ const Signup = () => {
           value={gender}
           onChange={(e) => setGender(e.target.id)}
           type="radio"
-          id={`inline-radio-1`}
         />
         <Form.Check
           inline
@@ -208,7 +188,6 @@ const Signup = () => {
           value={gender}
           onChange={(e) => setGender(e.target.id)}
           type="radio"
-          id={`inline-radio-2`}
         />
 
         {
@@ -220,7 +199,7 @@ const Signup = () => {
         {/* gender radio button ends */}
 
         {/* email validation starts */}
-        <Form.Group className="mb-3" controlId="emailfield">
+        <Form.Group className="mb-3" >
           <Form.Label>Email :</Form.Label>
           <Form.Control
             type="text"
@@ -242,7 +221,7 @@ const Signup = () => {
         </Form.Group>
 
         {/* Password field starts */}
-        <Form.Group className="mb-3" controlId="passwordField">
+        <Form.Group className="mb-3" >
           <Form.Label htmlFor="inputPassword5">Password</Form.Label>
           <Form.Control
             type="password"
@@ -265,7 +244,7 @@ const Signup = () => {
 
 
         {/* confirm password starts */}
-        <Form.Group className="mb-3" controlId="cpasswordField">
+        <Form.Group className="mb-3" >
           <Form.Label htmlFor="inputPassword5"  >Confirm Password</Form.Label>
           <Form.Control
             type="password"
@@ -286,7 +265,7 @@ const Signup = () => {
         </Form.Group>
         {/* confirm password ends */}
 
-        <Button onClick={validate} variant="primary">
+        <Button type="submit" variant="primary">
           Submit
         </Button>
       </form>
