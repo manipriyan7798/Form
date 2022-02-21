@@ -51,8 +51,19 @@ const Signup = () => {
       setConfirmpasswordValidation(true);
     }
 
-    if (!firstName || !lastName || !email || !genderValidation || !password || !confirmPassword) {
-      return false;
+    //if password & confirmPassword not equal
+    if (password !== confirmPassword) {
+      e.preventDefault();
+      alert("password and confirm password is not equal");
+      // } else if (
+      //   !firstName ||
+      //   !lastName ||
+      //   !email ||
+      //   !genderValidation ||
+      //   !password ||
+      //   !confirmPassword
+      // ) {
+      //   return false;
     } else {
       e.preventDefault();
       console.log({
@@ -64,14 +75,6 @@ const Signup = () => {
         gender: gender,
       });
     }
-
-    //if password & confirmPassword not equal
-    if (password !== confirmPassword) {
-      e.preventDefault();
-
-      alert("password and confirm password is not equal");
-    }
-
     return true;
   };
 
@@ -198,7 +201,10 @@ const Signup = () => {
           id="Male"
           name="gender"
           value={gender}
-          onChange={(e) => setGender(e.target.id)}
+          onChange={(e) => {
+            setGender(e.target.id);
+            setGenderValidation(false);
+          }}
           type="radio"
         />
         <Form.Check
@@ -207,7 +213,10 @@ const Signup = () => {
           label="Female"
           name="gender"
           value={gender}
-          onChange={(e) => setGender(e.target.id)}
+          onChange={(e) => {
+            setGender(e.target.id);
+            setGenderValidation(false);
+          }}
           type="radio"
         />
 
@@ -240,7 +249,10 @@ const Signup = () => {
             id="inputPassword5"
             aria-describedby="passwordHelpBlock"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setPasswordValidation(false);
+            }}
             placeholder="Password"
             minLength={6}
           />
@@ -259,7 +271,10 @@ const Signup = () => {
             name="password"
             id="confirm-password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value);
+              setConfirmpasswordValidation(false);
+            }}
             placeholder="Confirm Password"
             minLength={6}
           />
