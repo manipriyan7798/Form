@@ -1,0 +1,9 @@
+.main-container {
+  width: 40%;
+  float: left;
+  text-align: center;
+}
+
+.main-container img {
+  width: 300px;
+}
